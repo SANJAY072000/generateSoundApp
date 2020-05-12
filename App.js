@@ -30,6 +30,27 @@ const soundsList={
 
 
 export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+  }
+  playSound=async number=>{
+    const obj=new Audio.Sound();
+    try{
+      let url=soundsList[number];
+      await obj.loadAsync(url);
+      await obj.playAsync()
+      .then(playBackStatus=>{
+        setTimeOut(()=>{
+          obj.unloadAsync();
+        },playBackStatus.playableDurationMillis);
+      })
+      .catch(err=>console.log(err));
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   render(){
     return (
       <View style={styles.container}>
