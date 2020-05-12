@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import {Audio} from 'expo';
+import {Audio} from 'expo-av';
 
 const listBackgroundColors={
   1:'#01CBC6',
@@ -54,7 +54,15 @@ export default class App extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <Text>Spanish Number App</Text>
+        <View style={styles.grid}>
+          <Image source={require('./assets/logo.png')} style={styles.logo}/>
+        <View style={styles.row}>
+          <TouchableOpacity style={[{backgroundColor:listBackgroundColors[1]},styles.item]}
+            onPress={()=>this.playSound('one')}>
+            <Text style={styles.itemText}>One</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
       </View>
     );
   }
@@ -67,4 +75,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  grid:{
+    flex:1,
+    margin:5
+  },
+  logo:{
+    alignSelf:'center',
+    marginTop:20
+  },
+  row:{
+    flexDirection:'row',
+  },
+  item:{
+    flex:1,
+    height:110,
+    alignItems:'center',
+    justifyContent:'center',
+    margin:2
+  },
+  itemText:{
+    color:'#fff',
+    fontSize:20
+  }
 });
