@@ -41,7 +41,7 @@ export default class App extends Component {
       await obj.loadAsync(require(url));
       await obj.playAsync()
       .then(playBackStatus=>{
-        // obj.unloadAsync();
+        obj.unloadAsync();
       })
       .catch(err=>console.log(err));
     }
