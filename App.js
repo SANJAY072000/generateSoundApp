@@ -38,12 +38,10 @@ export default class App extends Component {
     const obj=new Audio.Sound();
     try{
       let url=soundsList[number];
-      await obj.loadAsync(url);
+      await obj.loadAsync(require(url));
       await obj.playAsync()
       .then(playBackStatus=>{
-        setInterval(()=>{
-          obj.unloadAsync();
-        },playBackStatus.playableDurationMillis);
+        // obj.unloadAsync();
       })
       .catch(err=>console.log(err));
     }
