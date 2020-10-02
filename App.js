@@ -41,7 +41,9 @@ export default class App extends Component {
       await obj.loadAsync(require(url));
       await obj.playAsync()
       .then(playBackStatus=>{
-        obj.unloadAsync();
+        setInterval(()=>{
+          obj.unloadAsync();
+        }, playBackStatus.playableDurationMillis);
       })
       .catch(err=>console.log(err));
     }
